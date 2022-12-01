@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function merge(arr2, arr1) {
+        let i = 0;
+        let j = 0;
+        let newArr = [];
+
+        while (i < arr2.length && j < arr1.length) {
+          if (arr2[i] >= arr1[j]) {
+            newArr.push(arr1[j]);
+            j++;
+          } else {
+            newArr.push(arr2[i]);
+            i++;
+          }
+        }
+
+        for (; j < arr1.length; j++) {
+          newArr.push(arr1[j]);
+        }
+        for (; i < arr2.length; i++) {
+          newArr.push(arr2[i]);
+        }
+        return newArr;
+      }
+
+      function mergeSort(arr) {
+        console.log("mergeSort Function is called", arr);
+        if (arr.length <= 1) {
+          return arr;
+        }
+        let mid = Math.floor(arr.length / 2);
+        let left = mergeSort(arr.slice(0, mid));
+
+        let right = mergeSort(arr.slice(mid));
+
+        return merge(left, right);
+      }
+
+      console.log(mergeSort([2, 6, 9, 4, 5, 8]));
+    </script>
+  </body>
+</html>
